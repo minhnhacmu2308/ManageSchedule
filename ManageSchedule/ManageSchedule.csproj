@@ -211,6 +211,7 @@
     <Content Include="Views\Modules\Footer.cshtml" />
     <Content Include="Views\Modules\Menu.cshtml" />
     <Content Include="Views\CheckIn\Test.cshtml" />
+    <Content Include="Views\CheckIn\A.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
