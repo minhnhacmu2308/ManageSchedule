@@ -21,5 +21,10 @@ namespace ManageSchedule.Controllers
             ViewBag.L = mydb.roles.Where(c => c.id==1).FirstOrDefault();
             return View();
         }
+        public ActionResult A()
+        {
+            ViewBag.L = mydb.roles.Where(c => c.id == 1).FirstOrDefault();
+            return View();
+        }
     }
 }
