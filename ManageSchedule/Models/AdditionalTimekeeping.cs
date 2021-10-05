@@ -12,19 +12,25 @@ namespace ManageSchedule.Models
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int id { get; set; }
-        public int type { get; set; }
 
-        public int typeChild { get; set; }
+        [StringLength(255)]
+        [Required]
+        public string type { get; set; }
+
+        [StringLength(255)]
+        public string typeChild { get; set; }
 
         public TimeSpan start { get; set; }
 
-        public TimeSpan end { get; set; }
+        public TimeSpan endTime { get; set; }
 
         public DateTime date { get; set; }
 
         public string note { get; set; }
 
         public int status { get; set; }
+
+        public DateTime created { get; set; }
 
         public virtual User User { get; set; }
     }

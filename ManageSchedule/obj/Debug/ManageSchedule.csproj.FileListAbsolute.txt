@@ -83,3 +83,8 @@ D:\dđ\ManageSchedule\ManageSchedule\obj\Debug\ManageSchedule.dll
 D:\dđ\ManageSchedule\ManageSchedule\obj\Debug\ManageSchedule.pdb
 D:\dđ\ManageSchedule\ManageSchedule\obj\Debug\ManageSchedule.Migrations.createDB.resources
 D:\dđ\ManageSchedule\ManageSchedule\obj\Debug\ManageSchedule.csproj.GenerateResource.cache
+D:\dđ\ManageSchedule\ManageSchedule\obj\Debug\ManageSchedule.Migrations._new.resources
+D:\dđ\ManageSchedule\ManageSchedule\obj\Debug\ManageSchedule.Migrations.newu.resources
+D:\dđ\ManageSchedule\ManageSchedule\obj\Debug\ManageSchedule.Migrations.n.resources
+D:\dđ\ManageSchedule\ManageSchedule\obj\Debug\ManageSchedule.Migrations.naa.resources
+D:\dđ\ManageSchedule\ManageSchedule\obj\Debug\ManageSchedule.Migrations.newupa.resources

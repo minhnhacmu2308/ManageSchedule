@@ -1,0 +1,133 @@
+﻿@model List<ManageSchedule.Models.AdditionalTimekeeping>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<main>
+    <div class="container-fluid px-4">
+        @{ DateTime aDateTime = DateTime.Now; }
+        <div style="display:flex;justify-content:space-between">
+            <div>
+                <h1 class="mt-4">Quản lí chấm công bổ sung</h1>
+            </div>
+            <div class="mt-5">
+                <span style="font-weight:bold">Hôm nay ngày : </span><span>@String.Format("{0:yyyy-MM-dd}", @aDateTime)</span>
+            </div>
+        </div>
+
+        <div class="card mb-4">
+            <div class="card-header">
+                @if (ViewBag.Msg != null)
+                {
+                    if (ViewBag.Msg == "1")
+                    {
+                        <div class="alert alert-success">
+                            <strong>Thành công</strong>
+                        </div>
+                    }
+                }
+                @{ var userInfomatiom = (ManageSchedule.Models.User)Session["USER"];}
+                @if (userInfomatiom.Role.id != 1)
+                {
+                    <a href="/AdditionalTimekeeping/Add" style="background-color: #0056A7 !important" class="btn btn-success">
+                        Thêm mới
+                    </a>
+                }
+
+
+
+            </div>
+            <div class="card-body">
+                <table id="datatablesSimple">
+                    <thead>
+                        <tr style="background-color: #F7F8F9; color: #0056A7 ">
+                            <th width="50px">STT</th>
+                            <th width="200px">Nhân Viên</th>
+                            <th>Thời gian tạo</th>
+                            <th width="100px">Khoảng thời gian</th>
+                            <th width="70px">Quản lý</th>
+                            <th width="100px">Kiểu </th>
+                            <th width="100px">Loại</th>
+                            <th width="100px">Trạng thái</th>
+                            <th width="200px">Ghí chú</th>
+                            @if (userInfomatiom.Role.id == 1)
+                            {
+                                <th>Thao tác</th>
+                            }
+
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr>
+                            <th>STT</th>
+                            <th>Date</th>
+                            <th>Showtime</th>
+                            <th>Name</th>
+                            <th>Action</th>
+                        </tr>
+                    </tfoot>
+                    <tbody>
+                        @{ var index = 0;}
+                        @foreach (var item in Model)
+                        {
+                            index += 1;
+                        <tr>
+                            <td>@index</td>
+                            <td>
+                                <p style="font-weight:bold">@item.User.fullName</p>
+                                <p style="color:blue">@item.User.email</p>
+                            </td>
+                            <td>@item.created</td>
+                            <td>
+                                <p>BĐ : @item.start.ToString(@"hh\:mm")</p>
+                                <p>@String.Format("{0:yyyy-MM-dd}", @item.date)</p>
+                                <p>KT : @item.endTime.ToString(@"hh\:mm")</p>
+                                <p>@String.Format("{0:yyyy-MM-dd}", @item.date)</p>
+
+                            </td>
+                            <td>Admin</td>
+                            <td>@item.type</td>
+                            @if (item.typeChild == "null")
+                            {
+                                <td>Không</td>
+                            }
+                            else
+                            {
+                                <td>@item.typeChild</td>
+                            }
+                            @if (item.status == 0)
+                            {
+                                <td><span class="badge badge-danger" style="background-color:goldenrod;font-size:12px">Chờ duyệt</span></td>
+                            }
+                            else if (item.status == 1)
+                            {
+                                <td><span class="badge badge-danger" style="background-color: forestgreen; font-size: 12px ">Đã duyệt</span></td>
+                            }
+                            else
+                            {
+                                <td><span class="badge badge-danger" style="background-color: red; font-size: 12px ">Đã hủy</span></td>
+                            }
+                            <td>@item.note</td>
+                            @if (userInfomatiom.Role.id == 1)
+                            {
+                                <td>
+                                    <a style="color: #0056A7;font-size:20px;border:1px solid #ccc;width:50px;height:50px" class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown"
+                                       aria-expanded="false"></a>
+                                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                        <li><a class="dropdown-item" href="/change-status/@item.id/1">Duyệt</a></li>
+                                        <li><a class="dropdown-item" href="/change-status/@item.id/2">Hủy</a></li>
+                                    </ul>
+                                </td>
+                            }
+
+                        </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</main>
+
+

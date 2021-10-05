@@ -23,6 +23,10 @@ namespace ManageSchedule.Models
 
         [StringLength(255)]
         [Required]
+        public string email { get; set; }
+
+        [StringLength(255)]
+        [Required]
         public string password { get; set; }
 
         public int status { get; set; }

@@ -44,6 +44,8 @@ namespace ManageSchedule.Models
         [Required]
         public string headquarter { get; set; }
 
+        public DateTime created { get; set; }
+
         public int status { get; set; }
 
         public virtual User User { get; set; }

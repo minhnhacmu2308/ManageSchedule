@@ -1,0 +1,240 @@
+﻿@model List<ManageSchedule.Models.CheckIn>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<main>
+    <div class="container-fluid px-4">
+        @{  DateTime aDateTime = DateTime.Now; }
+        <div style="display:flex;justify-content:space-between">
+            <div >
+                <h1 class="mt-4">Quản lí điểm danh</h1>       
+            </div>
+            <div class="mt-5">
+                <span style="font-weight:bold" >Hôm nay ngày : </span><span>@String.Format("{0:yyyy-MM-dd}", @aDateTime)</span>
+            </div>
+        </div>
+       
+        <div class="card mb-4">
+            <div class="card-header">
+                @if (ViewBag.Msg != null)
+                {
+                    if (ViewBag.Msg == "1")
+                    {
+                        <div class="alert alert-success">
+                            <strong>Thành công</strong>
+                        </div>
+                    }
+                }
+                @{ var userInfomatiom = (ManageSchedule.Models.User)Session["USER"];}
+                @if (userInfomatiom.Role.id == 1)
+                {
+
+                }
+                else
+                {
+                    if (ViewBag.check == null)
+                    {
+
+                        <a href="/CheckIn/checkIn" style="background-color: #0056A7 !important" class="btn btn-success">
+                            Check In
+                        </a>
+                    }
+                    else
+                    {
+                        if (ViewBag.checkDone == null)
+                        {
+                            <p style="color:forestgreen">Đã hoàn thành checkin và checkout, xin cảm ơn !</p>
+                        }
+                        else
+                        {
+                            <a href="/CheckIn/checkOut" style="background-color: #0056A7 !important" class="btn btn-success">
+                                Check Out
+                            </a>
+                        }
+
+                    }
+                }
+            </div>
+            <div class="card-body">
+                <table id="datatablesSimple">
+                    <thead>
+                        <tr style="background-color: #F7F8F9; color: #0056A7 ">
+                            <th width="50px">STT</th>
+                            <th width="200px">Tên</th>
+                            <th>Ngày</th>
+                            <th width="70px">Giờ CheckIn</th>
+                            <th width="70px">Giờ CheckOut </th>
+                            <th width="100px">Đến muộn </th>
+                            <th width="100px">Về sớm </th>
+                            <th  width="100px">Vai trò </th>
+                            <th width="150px">Quản lí</th>
+                            <th width="130px">Tỉnh/Thành phố</th>
+                            @*<th>Thao tác</th>*@
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr>
+                            <th>STT</th>
+                            <th>Date</th>
+                            <th>Showtime</th>
+                            <th>Name</th>
+                            <th>Action</th>
+                        </tr>
+                    </tfoot>
+                    <tbody>
+                        @{ var index = 0;}
+                        @foreach (var item in Model)
+                        {
+                            string dateS = String.Format("{0:yyyy-MM-dd}", @item.date);
+                            index += 1;
+                        <tr>
+                            <td>@index</td>
+                            <td>
+                                <p style="font-weight:bold">@item.User.fullName</p>
+                                <p style="color:blue">@item.User.email</p>
+                            </td>
+                            <td>@dateS</td>
+                            <td>@item.checkIn.ToString(@"hh\:mm")</td>
+                            @if (@item.checkOut.ToString(@"hh\:mm\:ss") == "00:00:00")
+                            {
+                                <td>--/--</td>
+                            }
+                            else
+                            {
+                                <td>@item.checkOut.ToString(@"hh\:mm")</td>
+                            }
+                            @{ TimeSpan start = new TimeSpan(8, 0, 00);
+                                TimeSpan end = new TimeSpan(17, 0, 00);
+                                int hourLate = 0;
+                                int hour = 0;
+                                int hourLate1 = 0;
+                                int hour1 = 0;
+                                if (start.Hours == item.checkIn.Hours)
+                                {
+                                    hourLate = item.checkIn.Minutes - start.Minutes;
+                                }
+                                else
+                                {
+                                    hour = item.checkIn.Hours - start.Hours;
+                                    hourLate = item.checkIn.Minutes - start.Minutes;
+
+                                }
+
+                                if (end.Hours == item.checkOut.Hours)
+                                {
+                                    hourLate1 = end.Minutes - item.checkOut.Minutes;
+                                }
+                                else
+                                {
+                                    hour1 = end.Hours - item.checkOut.Hours;
+                                    hourLate1 = Math.Abs(end.Minutes - item.checkOut.Minutes);
+
+                                }
+                            }
+                            @if (hour == 0)
+                            {
+                                <td>@hourLate phút</td>
+                            }
+                            else
+                            {
+                                <td>@hour giờ @hourLate phút</td>
+                            }
+                            @if (@item.checkOut.ToString(@"hh\:mm\:ss") == "00:00:00")
+                            {
+                                <td>--/--</td>
+                            }
+                            else
+                            {
+                                if (hour1 == 0)
+                                {
+                                    <td>@hourLate1 phút</td>
+                                }
+                                else
+                                {
+                                    if (hour1 < 0)
+                                    {
+                                        <td>0</td>
+                                    }
+                                    else
+                                    {
+                                        <td>@hour1 giờ @hourLate1 phút</td>
+                                    }
+
+                                }
+                            }
+
+                            <td>Sale Man</td>
+                            <td>Admin</td>
+                            <td>Khánh Hòa</td>
+                            @* <td>
+            <a style="color: #0056A7;font-size:20px;border:1px solid #ccc;width:50px;height:50px" class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown"
+               aria-expanded="false"></a>
+            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                <li><a class="dropdown-item" href="#">Thêm</a></li>
+                <li><a class="dropdown-item" href="#">Xóa</a></li>
+            </ul>
+        </td>*@
+
+                        </tr>
+                                    }
+                        <!-- Modal Update-->
+                        <div class="modal fade" id="exampleModal" tabindex="-1"
+                             aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Cập nhập</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form>
+                                            <div class="mb-3">
+                                                <div class="mb-3">
+                                                    <label for="category-film" class="col-form-label">
+                                                        Ngày
+                                                        chiếu:
+                                                    </label>
+                                                    <input type="date" class="form-control"
+                                                           id="category-film" disabled>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="category-film" class="col-form-label">
+                                                        Bắt
+                                                        đầu:
+                                                    </label>
+                                                    <input type="time" class="form-control"
+                                                           id="category-film">
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="category-film" class="col-form-label">
+                                                        Kết
+                                                        thúc:
+                                                    </label>
+                                                    <input type="time" class="form-control"
+                                                           id="category-film">
+                                                </div>
+                                            </div>
+
+                                        </form>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary"
+                                                data-bs-dismiss="modal">
+                                            Close
+                                        </button>
+                                        <button type="button" class="btn btn-primary">Save changes</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Modal Update-->
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</main>
+

@@ -1,0 +1,81 @@
+﻿
+@{
+    ViewBag.Title = "Add";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="container-fluid px-4">
+    <h4 class="mt-4">Chấm công bổ sung/Nghỉ phép</h4>
+    <div class="card mb-4">
+        <div class="card-header">
+            @if (ViewBag.Msg != null)
+            {
+                if (ViewBag.Msg == "1")
+                {
+                    <div class="alert alert-success">
+                        <strong>Thành công</strong>
+                    </div>
+                }
+            }
+        </div>
+        <div class="card-body">
+            <form  action="/AdditionalTimekeeping/Add" method="post">
+                <div class="col">
+                    <div class="col-12">
+                        <label for="category-film" class="col-form-label">Kiểu<span style="color:red">* </span>:</label>
+                        <select onchange="check()" class="form-select" aria-label="Default select example" id="kieu" tabindex="8" name="kieu" required>
+                            <option value="" selected>Chọn kiểu</option>
+                            <option value="Chấm công bổ sung" >Chấm công bổ sung</option>
+                            <option value="Nghỉ phép">Nghỉ phép</option>
+                            <option value="Nghỉ chế độ (Hiếu, hỉ, khám thai, vợ sinh,…)">Nghỉ chế độ (Hiếu, hỉ, khám thai, vợ sinh,…)</option>
+                            <option value="Nghỉ theo chính sách bộ phận">Nghỉ theo chính sách bộ phận</option>
+                        </select>
+                    </div>
+                    <div class="col-12" style="display:none" id="loai">
+                        <label for="category-film" class="col-form-label">Loại chấm công<span style="color:red">* </span>:</label>
+                        <select class="form-select" aria-label="Default select example" id="theloai" tabindex="8" name="theloai" required>
+                            <option value="null" selected>Chọn loại chấm công</option>
+                            <option value="Quên chấm công">Quên chấm công</option>
+                            <option value="Việc công ty">Việc công ty</option>
+                            <option value="Việc cá nhân">Việc cá nhân</option>
+                            <option value="Máy chấm công lỗi">Máy chấm công lỗi</option>
+                        </select>
+                    </div>
+                    <div class="col-12">
+                        <label for="category-film" class="col-form-label">Ngày<span style="color:red">* </span>:</label>
+                        <input type="date" class="form-control" id="ngay" name="date" min="" tabindex="5" required>
+                    </div>
+                    <div class="col-12">
+                        <label for="category-film" class="col-form-label">Bắt đầu<span style="color:red">* </span>:</label>
+                        <input type="time" class="form-control" id="start" name="start" min="" tabindex="5" required>
+                    </div>
+                    <div class="col-12">
+                        <label for="category-film" class="col-form-label">Kết thúc <span style="color:red">* </span>:</label>
+                        <input type="time" class="form-control" id="end" name="end" min="" tabindex="5" required>
+                    </div>
+                    <div class="col-12">
+                        <label for="category-film" class="col-form-label">Ghi chú<span style="color:red">* </span>:</label><br />
+                        <textarea name="note" class="form-control"  style="width:100%" tabindex="8" rows="3"></textarea>
+                    </div>
+                </div>
+
+
+                <div class="modal-footer">
+                    <a style="width:100px" href="/AdditionalTimekeeping/Index" class="btn btn-secondary" >Trờ về</a>
+                    <button style="width:100px" type="submit" class="btn btn-primary" >Thêm </button>
+                </div>
+            </form>
+            <script>
+                function check() {
+                    var a = document.getElementById("kieu").value;
+                    if (a == "Chấm công bổ sung") {
+                        document.getElementById("loai").style.display = 'block';
+                    } else {
+                        document.getElementById("loai").style.display = 'none';
+                    }
+                  
+                }
+            </script>
+        </div>
+    </div>
+</div>
+

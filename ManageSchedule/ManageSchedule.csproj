@@ -140,6 +140,26 @@
     <Compile Include="Migrations\202110010635547_createDB.designer.cs">
       <DependentUpon>202110010635547_createDB.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202110041357258_new.cs" />
+    <Compile Include="Migrations\202110041357258_new.designer.cs">
+      <DependentUpon>202110041357258_new.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202110050829314_newu.cs" />
+    <Compile Include="Migrations\202110050829314_newu.designer.cs">
+      <DependentUpon>202110050829314_newu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202110050955360_n.cs" />
+    <Compile Include="Migrations\202110050955360_n.designer.cs">
+      <DependentUpon>202110050955360_n.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202110050958496_naa.cs" />
+    <Compile Include="Migrations\202110050958496_naa.designer.cs">
+      <DependentUpon>202110050958496_naa.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202110051342420_newupa.cs" />
+    <Compile Include="Migrations\202110051342420_newupa.designer.cs">
+      <DependentUpon>202110051342420_newupa.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AdditionalTimekeeping.cs" />
     <Compile Include="Models\Category.cs" />
@@ -210,12 +230,13 @@
     <Content Include="Views\Modules\Header.cshtml" />
     <Content Include="Views\Modules\Footer.cshtml" />
     <Content Include="Views\Modules\Menu.cshtml" />
+    <Content Include="Views\CheckIn\Index.cshtml" />
+    <Content Include="Views\Authentication\Login.cshtml" />
+    <Content Include="Views\AdditionalTimekeeping\Index.cshtml" />
+    <Content Include="Views\AdditionalTimekeeping\Add.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\AdditionalTimekeeping\" />
-    <Folder Include="Views\Authentication\" />
-    <Folder Include="Views\CheckIn\" />
     <Folder Include="Views\Merchant\" />
   </ItemGroup>
   <ItemGroup>
@@ -234,6 +255,21 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202110010635547_createDB.resx">
       <DependentUpon>202110010635547_createDB.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202110041357258_new.resx">
+      <DependentUpon>202110041357258_new.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202110050829314_newu.resx">
+      <DependentUpon>202110050829314_newu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202110050955360_n.resx">
+      <DependentUpon>202110050955360_n.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202110050958496_naa.resx">
+      <DependentUpon>202110050958496_naa.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202110051342420_newupa.resx">
+      <DependentUpon>202110051342420_newupa.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
