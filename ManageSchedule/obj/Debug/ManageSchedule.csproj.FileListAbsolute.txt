@@ -88,3 +88,4 @@ D:\dđ\ManageSchedule\ManageSchedule\obj\Debug\ManageSchedule.Migrations.newu.re
 D:\dđ\ManageSchedule\ManageSchedule\obj\Debug\ManageSchedule.Migrations.n.resources
 D:\dđ\ManageSchedule\ManageSchedule\obj\Debug\ManageSchedule.Migrations.naa.resources
 D:\dđ\ManageSchedule\ManageSchedule\obj\Debug\ManageSchedule.Migrations.newupa.resources
+D:\dđ\ManageSchedule\ManageSchedule\obj\Debug\ManageSchedule.Migrations.newngyuen.resources

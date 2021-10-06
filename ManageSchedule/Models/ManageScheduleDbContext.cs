@@ -24,5 +24,7 @@ namespace ManageSchedule.Models
 
         public DbSet<CheckIn> checkIns { get; set; }
 
+        public DbSet<ScheduleWork> scheduleWorks { get; set; }
+
     }
 }
