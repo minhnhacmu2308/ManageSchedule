@@ -1,0 +1,92 @@
+﻿
+@{
+    ViewBag.Title = "Add";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<main>
+    <div class="container-fluid px-4">
+        <h4 class="mt-1">Thêm mới Merchant</h4>
+
+        <div class="card mb-4">
+    
+            <div class="card-body">
+                <form enctype="multipart/form-data" action="/Merchant/AddNew" method="post">
+                    <div class="col">
+                        <div class="row">
+                            <div class="col-6">
+                                <label for="category-film" class="col-form-label">Họ và tên <span style="color:red">* </span>:</label>
+                                <input type="text" class="form-control" id="tenphim" name="hoten" tabindex="1" autofocus required maxlength="20">
+                            </div>
+                            <div class="col-6">
+                                <label for="category-film" class="col-form-label">Loại Merchant <span style="color:red">* </span>:</label>
+                                <select class="form-select" aria-label="Default select example" id="loaimerchant" tabindex="8" name="loaimerchant" required>
+                                    <option value="" selected>Chọn thể loại</option>
+                                    <option value="Doanh nghiệp">Doanh nghiệp</option>
+                                    <option value="Cá nhân">Cá nhân</option>
+                                </select>
+                            </div>
+                            
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+                                <label for="category-film" class="col-form-label">Số điện thoại :</label>
+                                <input type="text" class="form-control" id="dienvien" name="sdt" tabindex="2" required>
+                            </div>
+                            <div class="col-6">
+                                <label for="category-film" class="col-form-label">Ngành hàng :</label>
+                                <select class="form-select" aria-label="Default select example" id="nganhhang" tabindex="8" name="nganhhang" required>
+                                    <option value="" selected>Chọn ngành hàng</option>
+                                    @{var cate = new ManageSchedule.Repositorys.CategoryRepository().getAll();
+                                    }
+                                    @foreach (var item1 in cate)
+                                    {
+                                        <option value="@item1.id">@item1.name</option>
+                                    }
+                                </select>
+                            </div>
+                            
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+                                <label for="category-film" class="col-form-label">Email :</label>
+                                <input type="text" class="form-control" id="tenphim" name="email" tabindex="1" autofocus required maxlength="20">
+                            </div>
+                            
+                            <div class="col-6">
+                                <label for="category-film" class="col-form-label">Dịch vụ :</label>
+                                <select class="form-select" aria-label="Default select example" id="dichvu" tabindex="8" name="dichvu" required>
+                                    <option value="" selected>Chọn dịch vụ</option>
+                                    <option value="Thanh toán">Thanh toán</option>
+                                    <option value="Bán hàng">Bán hàng</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+                                <label for="category-film" class="col-form-label">Tên cửa hàng :</label>
+                                <input type="text" class="form-control" id="dienvien" name="tench" tabindex="2" required>
+                            </div>
+                            
+                            <div class="col-6">
+                                <label for="category-film" class="col-form-label">Tỉnh/ thành phố <span style="color:red">* </span>:</label>
+                                <input type="text" class="form-control" id="dienvien" name="tt" value="Khánh Hòa" readonly>
+                            </div>
+                        </div>
+                        <div class="">
+                            <label for="category-film" class="col-form-label">Địa chỉ trụ sở <span style="color:red">* </span>:</label>
+                            <input type="text" class="form-control" id="dienvien" name="truso"  required>
+                        </div>
+                    </div>
+
+
+                    <div class="modal-footer">
+                        <a href="/Merchant/Index"><button style="width:100px" type="button" class="btn btn-secondary" >Hủy bỏ</button></a>
+                        <button style="width:100px" type="submit" class="btn btn-primary" >Thêm mới </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</main>
+

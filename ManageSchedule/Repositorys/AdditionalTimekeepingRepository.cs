@@ -29,12 +29,12 @@ namespace ManageSchedule.Repositorys
 
         public List<AdditionalTimekeeping> getListForAdmin()
         {
-            return myDb.additionalTimekeepings.ToList();
+            return myDb.additionalTimekeepings.OrderByDescending(p => p.date).ToList();
         }
 
         public List<AdditionalTimekeeping> getListForUser(int id)
         {
-            return myDb.additionalTimekeepings.Where(a => a.User.id == id).ToList();
+            return myDb.additionalTimekeepings.Where(a => a.User.id == id).OrderByDescending(p => p.date).ToList();
         }
 
         public AdditionalTimekeeping getAdditionalTimekeeping(int id)

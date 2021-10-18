@@ -1,0 +1,80 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<main>
+    <div class="container-fluid px-4">
+        <h4 class="mt-1">Danh sách Merchant</h4>
+       
+        <div class="card mb-4">
+            <div class="card-header">
+                @if (ViewBag.Msg != null)
+                {
+                    <div class="alert alert-success">
+                        <strong>Thành công</strong>
+                    </div>
+                }
+                @{ var userInfomatiom = (ManageSchedule.Models.User)Session["USER"];}
+                @if (userInfomatiom.Role.id != 1)
+                {
+            <a href="/Merchant/Add">
+                <button type="button" class="btn btn-info">
+                    Thêm mới
+                </button>
+            </a>
+                }
+                
+            </div>
+            <div class="card-body">
+                <table id="datatablesSimple">
+                    <thead style="color:#0d6efd ">
+                        <tr>
+                            <th></th>
+                            <th>Thời gian</th>
+                            <th>Merchant</th>
+                            <th>Địa chỉ</th>
+                            <th>Vùng kinh doanh</th>
+                            <th>Ngành hàng</th>
+                            <th>Dịch vụ</th>
+                            <th>Sales chăm sóc</th>
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr>
+                            <th></th>
+                            <th>Thời gian</th>
+                            <th>Merchant</th>
+                            <th>Địa chỉ</th>
+                            <th>Vùng kinh doanh</th>
+                            <th>Ngành hàng</th>
+                            <th>Dịch vụ</th>
+                            <th>Sales chăm sóc</th>
+                        </tr>
+                    </tfoot>
+                    <tbody>
+                        @{ var stt = 1;}
+                        @foreach (var item in ViewBag.List)
+                        {
+                            string datecreated = String.Format("{0:yyyy-MM-dd}", item.created);
+                            string timecreated = String.Format("{0:HH:mm}", item.created);
+                            <tr>
+                                <td style="width:10px">@stt</td>
+                                <td>
+                                    <strong>Tạo:</strong> @timecreated<br />@datecreated<br /><strong>Cập nhập:</strong> @timecreated<br />@datecreated
+                                </td>
+                                <td>@item.fullName<br />@item.nameStore<br />@item.phoneNumber</td>
+                                <td>@item.headquarter<br />Khánh Hòa</td>
+                                <td>Nam Trung Bộ và<br />Tây Nguyên<br />Khánh Hòa</td>
+                                <td>@item.Category.name</td>
+                                <td>@item.service</td>
+                                <td><strong>@item.User.fullName</strong><br /><span style="color :#0d9af8 ">@item.User.email</span></td>
+                            </tr>
+                            stt++; }
+                        </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</main>
+

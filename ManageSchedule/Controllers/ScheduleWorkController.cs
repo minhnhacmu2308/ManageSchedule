@@ -8,10 +8,11 @@ using System.Web.Mvc;
 
 namespace ManageSchedule.Controllers
 {
-    public class MerchantController : Controller
+    public class ScheduleWorkController : Controller
     {
-        MerchantRepository mer = new MerchantRepository();
-        // GET: Merchant
+        // GET: ScheduleWork
+        ScheduleWorkRepository mer = new ScheduleWorkRepository();
+        MerchantRepository mch = new MerchantRepository();
         public ActionResult Index(string mess)
         {
             var user = (User)Session["USER"];
@@ -34,17 +35,18 @@ namespace ManageSchedule.Controllers
         public ActionResult AddNew(FormCollection form)
         {
             var user = (User)Session["USER"];
-            var user_id = user.id;
-            var fullname = form["hoten"];
-            var phone = form["sdt"];
-            var email = form["email"];
-            var tch = form["tench"];
-            var theloai = form["loaimerchant"];
-            var dichvu = form["dichvu"];
-            DateTime now = DateTime.Now;
-            var nganhhang = Int32.Parse(form["nganhhang"]);
-            var truso = form["truso"];
-            mer.add(fullname, phone, email, tch, theloai, dichvu, nganhhang, truso,user_id, now);
+            var tieude = form["tieude"];
+            var date = form["date"];
+            var start = form["start"];
+            var end = form["end"];
+            var mucdich = form["mucdich"];
+            var ghichu = form["ghichu"];
+            TimeSpan batdau = TimeSpan.Parse(start);
+            TimeSpan ketthuc = TimeSpan.Parse(end);
+            DateTime ngay = DateTime.Parse(date);
+            var merchant = Int32.Parse(form["merchant"]);
+            var diadiem = mch.getMerchant(merchant).headquarter;
+            mer.add(tieude,ngay,batdau,ketthuc,mucdich,diadiem,ghichu,merchant,user.id);
             var message = "1";
             return RedirectToAction("Index", new { mess = message });
         }

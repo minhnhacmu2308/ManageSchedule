@@ -1,0 +1,82 @@
+﻿
+@{
+    ViewBag.Title = "Add";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<main>
+    <div class="container-fluid px-4">
+        <h4 class="mt-1">Thêm mới lịch làm việc</h4>
+
+        <div class="card mb-4">
+
+            <div class="card-body">
+                <form enctype="multipart/form-data" action="/ScheduleWork/AddNew" method="post">
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="col-12">
+                                <label for="category-film" class="col-form-label">Tiêu đề <span style="color:red">* </span>:</label>
+                                <input type="text" class="form-control" id="tenphim" name="tieude" tabindex="1" autofocus required maxlength="80">
+                            </div>
+                            @{ var userInfomatiom = (ManageSchedule.Models.User)Session["USER"];}
+                            <div class="col-12">
+                                <label for="category-film" class="col-form-label">Nhân viên thực hiện :</label>
+                                <input type="text" class="form-control" id="tenphim" name="nhanvien" value="@userInfomatiom.fullName" readonly>
+                            </div>
+                            <div class="col-12">
+                                <label for="category-film" class="col-form-label">Ngày<span style="color:red">* </span>:</label>
+                                <input type="date" class="form-control" id="ngay" name="date" min="" tabindex="5" required>
+                            </div>
+                            <div class="col-12">
+                                <label for="category-film" class="col-form-label">Bắt đầu<span style="color:red">* </span>:</label>
+                                <input type="time" class="form-control" id="start" name="start" min="" tabindex="5" required>
+                            </div>
+                            
+                        </div>
+                        <div class="col-6">
+                            <div class="col-12">
+                                <label for="category-film" class="col-form-label">Mục đích <span style="color:red">* </span>:</label>
+                                <select class="form-select" aria-label="Default select example" id="loaimerchant" tabindex="8" name="mucdich" required>
+                                    <option value="" selected>Chọn mục đích</option>
+                                    <option value="Đi họp">Đi họp</option>
+                                    <option value="Gặp khách hàng tư vấn">Gặp khách hàng tư vấn</option>
+                                    <option value="Bàn giao thiết bị">Bàn giao thiết bị</option>
+                                    <option value="Ký hợp đồng">Ký hợp đồng</option>
+                                    <option value="Chăm sóc khách hàng">Chăm sóc khách hàng</option>
+                                    <option value="Gọi điện thoại tư vấn">Gọi điện thoại tư vấn</option>
+                                    <option value="Khác">Khác</option>
+                                </select>
+                            </div>
+                            <div class="col-12">
+                                <label for="category-film" class="col-form-label">Merchant :</label>
+                                <select class="form-select" aria-label="Default select example" id="nganhhang" tabindex="8" name="merchant" required>
+                                    <option value="" selected>Chọn Merchant</option>
+                                    @{var cate = new ManageSchedule.Repositorys.MerchantRepository().getListForUser(userInfomatiom.id);
+                                    }
+                                    @foreach (var item1 in cate)
+                                    {
+                                        <option value="@item1.id">@item1.nameStore</option>
+                                    }
+                                </select>
+                            </div>
+
+                            <div class="col-12">
+                                <label for="category-film" class="col-form-label">Ghi chú :</label>
+                                <input type="text" class="form-control" id="dienvien" name="ghichu" required>
+                            </div>
+                            <div class="col-12">
+                                <label for="category-film" class="col-form-label">Kết thúc <span style="color:red">* </span>:</label>
+                                <input type="time" class="form-control" id="end" name="end" min="" tabindex="5" required>
+                            </div>
+                        </div>
+                        </div>
+
+                        <div class="modal-footer mt-3">
+                            <a href="/ScheduleWork/Index"><button style="width:100px" type="button" class="btn btn-secondary">Hủy bỏ</button></a>
+                            <button style="width:100px" type="submit" class="btn btn-primary">Thêm mới </button>
+                        </div>
+</form>
+            </div>
+        </div>
+    </div>
+</main>
+

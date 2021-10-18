@@ -13,12 +13,12 @@ namespace ManageSchedule.Repositorys
 
         public List<CheckIn> getListCheckIn()
         {
-            return myDb.checkIns.ToList();
+            return myDb.checkIns.OrderByDescending(p => p.date).ToList();
         }
 
         public List<CheckIn> getListChekInForStaff(int id)
         {
-            return myDb.checkIns.Where(c => c.User.id == id).ToList();
+            return myDb.checkIns.Where(c => c.User.id == id).OrderByDescending(p => p.date).ToList();
         }
         public void postCheckIn(CheckIn checkIn)
         {

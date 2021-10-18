@@ -133,6 +133,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MerchantController.cs" />
     <Compile Include="Controllers\ModulesController.cs" />
+    <Compile Include="Controllers\ScheduleWorkController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -179,6 +180,7 @@
     <Compile Include="Repositorys\CheckInRepository.cs" />
     <Compile Include="Repositorys\MerchantRepository.cs" />
     <Compile Include="Repositorys\RoleRepository.cs" />
+    <Compile Include="Repositorys\ScheduleWorkRepository.cs" />
     <Compile Include="Repositorys\UserRepository.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -239,10 +241,13 @@
     <Content Include="Views\Authentication\Login.cshtml" />
     <Content Include="Views\AdditionalTimekeeping\Index.cshtml" />
     <Content Include="Views\AdditionalTimekeeping\Add.cshtml" />
+    <Content Include="Views\Merchant\Add.cshtml" />
+    <Content Include="Views\Merchant\Index.cshtml" />
+    <Content Include="Views\ScheduleWork\Add.cshtml" />
+    <Content Include="Views\ScheduleWork\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Merchant\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

@@ -1,0 +1,81 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<main>
+    <div class="container-fluid px-4">
+        <h4 class="mt-1">Lịch làm việc</h4>
+
+        <div class="card mb-4">
+            <div class="card-header">
+                @if (ViewBag.Msg != null)
+                {
+                    <div class="alert alert-success">
+                        <strong>Thành công</strong>
+                    </div>
+                }
+                @{ var userInfomatiom = (ManageSchedule.Models.User)Session["USER"];}
+                @if (userInfomatiom.Role.id != 1)
+                {
+            <a href="/ScheduleWork/Add">
+                <button type="button" class="btn btn-info">
+                    Thêm mới
+                </button>
+            </a>
+                }
+                
+            </div>
+            <div class="card-body">
+                <table id="datatablesSimple">
+                    <thead style="color:#0d6efd ">
+                        <tr>
+                            <th>STT</th>
+                            <th>Thời gian thực hiện</th>
+                            <th>Nhân viên</th>
+                            <th>Công việc</th>
+                            <th>Mục đích</th>
+                            <th>Merchant</th>
+                            <th>Địa điểm</th>
+                            <th>Người tạo</th>
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr>
+                            <th>STT</th>
+                            <th>Thời gian thực hiện</th>
+                            <th>Nhân viên</th>
+                            <th>Công việc</th>
+                            <th>Mục đích</th>
+                            <th>Merchant</th>
+                            <th>Địa điểm</th>
+                            <th>Người tạo</th>
+                        </tr>
+                    </tfoot>
+                    <tbody>
+                        @{ var stt = 1;}
+                        @foreach (var item in ViewBag.List)
+                        {
+                            string datecreated = String.Format("{0:yyyy/MM/dd}", item.date);
+                            string starttime = item.start.ToString(@"hh\:mm");
+                            string endtime = item.endTime.ToString(@"hh\:mm");
+
+                            <tr>
+                                <td>@stt</td>
+                                <td>Tạo : @datecreated<br />Thực hiện @datecreated -- @starttime -<br />@endtime<br />Hoàn thành</td>
+                                <td><strong>@item.User.fullName</strong><br /><span style="color :#0d9af8 ">@item.User.email</span></td>
+                                <td>@item.title</td>
+                                <td>@item.purpose</td>
+                                <td><strong>@item.Merchant.nameStore</strong><br />@item.Merchant.fullName<br />@item.Merchant.headquarter<br />Khánh Hòa </td>
+                                <td>@item.Merchant.headquarter</td>
+                                <td><strong>@item.User.fullName</strong><br /><span style="color :#0d9af8 ">@item.User.email</span></td>
+                            </tr>
+                            stt++;
+                        }
+                        </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</main>
+
